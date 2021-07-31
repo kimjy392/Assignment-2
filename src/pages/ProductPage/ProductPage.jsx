@@ -197,8 +197,9 @@ class ProductPage extends React.Component {
     this.onCheckTime(STORAGE_KEY_NAMES.NOT_INTERESTED_ITEM);
 
     let timeStamp = this.state.timeStamp;
-    const recentClicked = this.onGetStorageItem(STORAGE_KEY_NAMES.RECENT_CHECKED).concat([{ ...item, timeStamp }]);
 
+    const recentList = this.onGetStorageItem(STORAGE_KEY_NAMES.RECENT_CHECKED).filter(data => data.title !== item.title);
+    const recentClicked = recentList.concat([{ ...item, timeStamp }]);
     storagePropsManager.setItemProps(STORAGE_KEY_NAMES.RECENT_CHECKED, recentClicked);
   };
 
